@@ -1,21 +1,27 @@
 mod core;
+mod plotter;
 
-use clap::Parser;
 use crate::core::CollatzSequence;
-
+use crate::plotter::Plotter;
+use clap::Parser;
 
 #[derive(Debug, Default, Parser)]
 struct Args {
-    #[clap(short)]
-    n: Option<u128>   
+    #[arg(short, long)]
+    start: u128,
+
+    #[arg(short, long)]
+    plot: bool,
 }
 
-fn main() {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
     let args = Args::parse();
 
-    if let Some(n) = args.n {
-        let collatz_sequence = CollatzSequence::new(n);
-        println!("{:?}", collatz_sequence);
-    }
-}
+    let collatz_sequence = CollatzSequence::new(args.start);
 
+    if args.plot {
+        let plotter = Plotter::new();
+        return plotter.plot(&collatz_sequence);
+    }
+    Ok(())
+}

@@ -1,7 +1,9 @@
 #[derive(Debug)]
 pub struct CollatzSequence {
-    hailstone: Vec<u128>,
-    starting_number: u128
+    pub hailstone: Vec<u128>,
+
+    /// The number from which the sequence starts.
+    pub starting_number: u128,
 }
 
 impl CollatzSequence {
@@ -20,7 +22,7 @@ impl CollatzSequence {
         }
 
         self.hailstone.push(self.starting_number);
- 
+
         let mut i = self.starting_number;
         while i != 1 {
             i = if i % 2 == 0 { i / 2 } else { 3 * i + 1 };
@@ -28,4 +30,3 @@ impl CollatzSequence {
         }
     }
 }
-
