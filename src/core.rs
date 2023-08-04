@@ -21,12 +21,31 @@ impl CollatzSequence {
             return;
         }
 
-        self.hailstone.push(self.starting_number);
-
         let mut i = self.starting_number;
         while i != 1 {
-            i = if i % 2 == 0 { i / 2 } else { 3 * i + 1 };
             self.hailstone.push(i);
+            i = if i % 2 == 0 { i / 2 } else { 3 * i + 1 };
         }
+        self.hailstone.push(1);
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_collatz_sequence_compute() {
+        let mut cs = CollatzSequence::new(1);
+        assert_eq!(cs.hailstone.len(), 1);
+        assert_eq!(cs.hailstone, vec![1]);
+
+        cs = CollatzSequence::new(2);
+        assert_eq!(cs.hailstone.len(), 2);
+        assert_eq!(cs.hailstone, vec![2, 1]);
+
+        cs = CollatzSequence::new(5);
+        assert_eq!(cs.hailstone.len(), 6);
+        assert_eq!(cs.hailstone, vec![5, 16, 8, 4, 2, 1]);
     }
 }
