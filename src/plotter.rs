@@ -14,10 +14,15 @@ impl Plotter {
         };
     }
 
-    pub fn plot(&self, cs: &CollatzSequence) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn plot(
+        &self,
+        cs: &CollatzSequence,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         let chart_name = "Collatz Sequence";
-        let file_name: &str = &format!("sequence_from_{}.png", cs.starting_number);
-        let root = BitMapBackend::new(file_name, (self.width, self.height)).into_drawing_area();
+        let file_name: &str =
+            &format!("sequence_from_{}.png", cs.starting_number);
+        let root = BitMapBackend::new(file_name, (self.width, self.height))
+            .into_drawing_area();
         root.fill(&WHITE)?;
         let mut chart = ChartBuilder::on(&root)
             .caption(chart_name, ("sans-serif", 50).into_font())
