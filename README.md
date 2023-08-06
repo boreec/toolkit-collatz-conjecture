@@ -1,10 +1,11 @@
 # collatz-conjecture
 
+Author: Cyprien Borée
+
 This project is a WIP and is not meant to be used yet.
 Todo list:
 - Add `--tree` to compute a CollatzSequence from 1 to n.
 - Add `--plot` to `--tree` to visualize the tree.
-- Fill author and other informations in Cargo.toml.
 - Add memoization for efficient bulk sequence computing.
 - Compute steps densitiy for a group of sequences.
 - Add github workflow.
