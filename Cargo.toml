@@ -1,9 +1,19 @@
 [package]
 name = "collatz_conjecture"
 version = "0.1.0"
+authors = ["Cyprien Borée"]
 edition = "2021"
-
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+description = "Rust application to play with the Collatz Conjecture"
+readme = "README.md"
+repository = "https://github.com/boreec/collatz-conjecture"
+keywords = ["collatz_conjecture", "benchmark", "plot"]
+categories = [
+  "algorithms",
+  "command-line-utilities",
+  "mathematics",
+  "visualization"
+]
+publish = false
 
 [dependencies]
 clap = {version = "4.3.19", features = ["derive"]}
