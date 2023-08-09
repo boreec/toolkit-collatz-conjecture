@@ -1,3 +1,6 @@
+use std::fs::File;
+use std::io::Write;
+
 pub struct CollatzTree {
     pub adjacency_matrix: Vec<(u128, Option<u128>)>,
     pub target: u128,
@@ -20,6 +23,22 @@ impl CollatzTree {
                 if i % 6 == 4 { Some((i - 1) / 3) } else { None }, // odd case
             ))
         }
+    }
+
+    pub fn to_dot_file(&self) -> Result<(), Box<dyn std::error::Error>> {
+        let filename: &str = &format!("tree_to_{}.dot", self.target);
+        let mut file = File::create(filename)?;
+
+        writeln!(&mut file, "graph to_{} {{", self.target)?;
+        for (i, branches) in self.adjacency_matrix.iter().enumerate() {
+            writeln!(&mut file, "\t{} -- {};", i + 1, branches.0)?;
+            if let Some(odd_number) = branches.1 {
+                writeln!(&mut file, "\t{} -- {};", i + 1, odd_number)?;
+            }
+        }
+        writeln!(&mut file, "}}")?;
+        file.flush()?;
+        Ok(())
     }
 }
 

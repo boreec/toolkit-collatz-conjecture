@@ -36,7 +36,8 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         println!("{:?}", collatz_sequence);
 
         if args.tree {
-            let _ = CollatzTree::new(s);
+            let t = CollatzTree::new(s);
+            return t.to_dot_file();
         }
 
         if args.plot {
