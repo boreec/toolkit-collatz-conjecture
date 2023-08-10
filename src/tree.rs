@@ -29,15 +29,42 @@ impl CollatzTree {
         let filename: &str = &format!("tree_to_{}.dot", self.target);
         let mut file = File::create(filename)?;
 
-        writeln!(&mut file, "graph to_{} {{", self.target)?;
+        writeln!(&mut file, "digraph to_{} {{", self.target)?;
+        writeln!(&mut file, "\trankdir=BT;")?;
+        self.define_node_colors(&mut file)?;
         for (i, branches) in self.adjacency_matrix.iter().enumerate() {
-            writeln!(&mut file, "\t{} -- {};", i + 1, branches.0)?;
+            writeln!(&mut file, "\t{} -> {};", i + 1, branches.0)?;
             if let Some(odd_number) = branches.1 {
-                writeln!(&mut file, "\t{} -- {};", i + 1, odd_number)?;
+                writeln!(&mut file, "\t{} -> {};", i + 1, odd_number)?;
             }
         }
         writeln!(&mut file, "}}")?;
         file.flush()?;
+        Ok(())
+    }
+
+    fn define_node_colors(
+        &self,
+        file: &mut File,
+    ) -> Result<(), Box<dyn std::error::Error>> {
+        for i in 0..self.adjacency_matrix.len() {
+            if (i + 1) % 2 == 0 {
+                writeln!(file, "{} [color=green, style=filled];", i + 1)?;
+            } else {
+                writeln!(file, "{} [color=gold, style=filled];", i + 1)?;
+            }
+        }
+
+        for node in self.adjacency_matrix.iter() {
+            if node.0 > self.adjacency_matrix.len() as u128 {
+                writeln!(file, "{} [color=green, style=filled];", node.0)?;
+            }
+            if let Some(odd) = node.1 {
+                if odd > self.adjacency_matrix.len() as u128 {
+                    writeln!(file, "{} [color=gold, style=filled];", odd)?;
+                }
+            }
+        }
         Ok(())
     }
 }
