@@ -48,7 +48,7 @@ $ cargo run -- -s 100 --tree && \
   display tree_to_100.png
 ```
 
-![](rsc/img/tree_to_1000.png | width=100)
+<img src="rsc/img/tree_to_1000.png" width="300">
 
 ## Benchmarking
 Use `-b` or `--benchmark` with a number to compare the efficiency of diverse
