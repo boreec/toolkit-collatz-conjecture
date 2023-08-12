@@ -47,8 +47,8 @@ $ cargo run -- -s 100 --tree && \
   dot -Tpng tree_to_100.dot > tree_to_100.png && \
   display tree_to_100.png
 ```
-![Collatz bottom-up tree for n = 100](rsc/img/tree_to_100.png)
 
+![](rsc/img/tree_to_1000.png | width=100)
 
 ## Benchmarking
 Use `-b` or `--benchmark` with a number to compare the efficiency of diverse
