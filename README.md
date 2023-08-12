@@ -43,9 +43,8 @@ To build the sequence in a reverse order from 1 to given n, use `--tree` arg.
 This will create the bottom-up tree and export it in a file named
 `tree_to_n.dot`. This file can then be processed into an image with:
 ```terminal
-$ cargo run -- -s 100 --tree && \
-  dot -Tpng tree_to_100.dot > tree_to_100.png && \
-  display tree_to_100.png
+$ cargo run -- -s 1000 --tree && \
+  dot -Tpng tree_to_1000.dot > tree_to_1000.png
 ```
 
 <img src="rsc/img/tree_to_1000.png" height="300">
