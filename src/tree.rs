@@ -85,19 +85,12 @@ mod tests {
 
     #[test]
     fn test_collatz_tree_build() {
-        let expected = vec![
-            (2, None),
-            (4, None),
-            (6, None),
-            (8, Some(1)),
-            (10, None),
-            (12, None),
-            (14, None),
-            (16, None),
-            (18, None),
-            (20, Some(3)),
-        ];
-        let built = CollatzTree::new(10).adjacency_matrix;
+        let mut expected = HashMap::new();
+        expected.insert(1, (Some(2), None));
+        expected.insert(2, (Some(4), None));
+        expected.insert(4, (Some(8), Some(1)));
+        expected.insert(8, (None, None));
+        let built = CollatzTree::new(10).tree;
         assert_eq!(expected, built)
     }
 }
