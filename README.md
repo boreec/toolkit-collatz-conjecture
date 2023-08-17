@@ -1,16 +1,39 @@
-# collatz-conjecture
+# collatz-conjecture (WIP)
 
-Author: Cyprien Borée
+The [Collatz conjecture](https://en.wikipedia.org/wiki/Collatz_conjecture),
+also known as the 3n + 1 problem, is a mathematical conjecture that involves a
+sequence of steps applied to a positive integer `n`.
 
-This project is a WIP and is not meant to be used yet.
-Todo list:
+Given a positive unsigned integer `n`, the following rules are applied:
+- If `n` is even, divide it by 2.
+- If `n` is odd, multiply it by 3 and add 1.
+
+Repeating these rules by updating the value of `n` with each step will
+eventually lead to `n` becoming equal to 1, regardless of the initial value of
+`n`.
+
+For example, if we start with `n` = 10:
+```text
+10 -> 5 -> 16 -> 8 -> 4 -> 2 -> 1
+```
+
+Despite its simplicity, the Collatz conjecture's behavior is not yet fully
+understood and remains an unsolved problem in mathematics.
+
+The purpose of this application is to give a toolbox to explore this problem
+under different angles.
+
+# To do list
+
+A personal remainder on what to do:
 - Add memoization for efficient bulk sequence computing.
 - Improve tree rendering by putting the nodes with a small delta to the same
 level.
+- Display specific integers in the tree (perfect, semi-perfect, prime, etc).
 - Compute steps densitiy for a group of sequences.
-- Add github workflow.
+- Improve existing github workflow.
 - Add markdown style comments to document code.
-- Generalize CollatSequence to other forms (5x + 1, negative numbers, etc.)
+- Generalize CollatSequence to other forms (5x + 1, negative numbers, etc).
 
 # Installation
 
