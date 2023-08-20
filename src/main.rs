@@ -22,6 +22,9 @@ struct Args {
 
     #[arg(short = 't', long = "tree", default_value_t = false)]
     tree: bool,
+
+    #[arg(short = 'T', long = "tree-fancy", default_value_t = false)]
+    tree_fancy: bool,
 }
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
@@ -35,9 +38,9 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
         let collatz_sequence = CollatzSequence::new(s);
         println!("{:?}", collatz_sequence);
 
-        if args.tree {
+        if args.tree || args.tree_fancy {
             let t = CollatzTree::new(s);
-            return t.to_dot_file();
+            return t.to_dot_file(args.tree_fancy);
         }
 
         if args.plot {

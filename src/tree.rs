@@ -40,13 +40,16 @@ impl CollatzTree {
         }
     }
 
-    pub fn to_dot_file(&self) -> Result<(), Box<dyn std::error::Error>> {
+    pub fn to_dot_file(
+        &self,
+        colors: bool,
+    ) -> Result<(), Box<dyn std::error::Error>> {
         let filename: &str = &format!("tree_to_{}.dot", self.target);
         let mut file = File::create(filename)?;
 
         writeln!(&mut file, "digraph to_{} {{", self.target)?;
         writeln!(&mut file, "\trankdir=BT;")?;
-        self.define_node_colors(&mut file)?;
+        self.define_node(&mut file, colors)?;
         for (key, value) in self.tree.iter() {
             if let Some(p_1) = value.0 {
                 writeln!(&mut file, "\t{} -> {:?};", key, p_1)?;
@@ -60,22 +63,35 @@ impl CollatzTree {
         Ok(())
     }
 
-    fn define_node_colors(
+    fn define_node(
         &self,
         file: &mut File,
+        with_style: bool,
     ) -> Result<(), Box<dyn std::error::Error>> {
         let mut sorted_keys: Vec<_> = self.tree.keys().copied().collect();
         sorted_keys.sort();
 
-        writeln!(file, "\t1 [color=gold, style=filled];")?;
+        if with_style {
+            writeln!(file, "{}", self.node_with_style(&1_u128))?;
+        } else {
+            writeln!(file, "\t1;")?;
+        }
         for key in sorted_keys.iter().skip(1) {
-            if key % 2 == 0 {
-                writeln!(file, "\t{} [color=green, style=filled];", key)?;
+            if with_style {
+                writeln!(file, "{}", self.node_with_style(key))?;
             } else {
-                writeln!(file, "\t{} [color=gold, style=filled];", key)?;
+                writeln!(file, "\t{};", key)?;
             }
         }
         Ok(())
+    }
+
+    fn node_with_style(&self, n: &u128) -> String {
+        if n % 2 == 0 {
+            format!("\t{} [color=green, style=filled];", n)
+        } else {
+            format!("\t{} [color=gold, style=filled];", n)
+        }
     }
 }
 
