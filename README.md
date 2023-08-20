@@ -72,18 +72,20 @@ This will create the bottom-up tree and export it in a file named
 $ cargo run -- -s 1000 --tree && \
   dot -Tpng tree_to_1000.dot > tree_to_1000.png
 ```
-
-<div style="text-align:center;">
-  <figure style="display:inline-block">
-      <img src="rsc/img/tree_to_1000.png" height="300">
-      <figcaption>--tree</figcaption>
-  </figure>
-
-  <figure style="display:inline-block">
-      <img src="rsc/img/colourful_tree_to_1000.png" height="300">
-      <figcaption>--tree-fancy</figcaption>
-  </figure>
-</div>
+<table>
+<thead>
+  <tr>
+    <th>--tree</th>
+    <th>--fancy-tree</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td><img src="rsc/img/tree_to_2000.png" width="300"></td>
+    <td><img src="rsc/img/tree_fancy_to_2000.png" width="300"></td>
+  </tr>
+</tbody>
+</table>
 
 ## Benchmarking
 Use `-b` or `--benchmark` with a number to compare the efficiency of diverse
