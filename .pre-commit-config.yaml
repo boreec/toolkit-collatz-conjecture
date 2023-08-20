@@ -1,10 +1,8 @@
 repos:
--   repo: https://github.com/pre-commit/pre-commit-hooks
-    rev: v4.4.0
+-   repo: https://github.com/jorisroovers/gitlint
+    rev:  v0.19.1
     hooks:
-    -   id: check-yaml
-    -   id: end-of-file-fixer
-    -   id: trailing-whitespace
+    -   id: gitlint
 
 -   repo: https://github.com/compilerla/conventional-pre-commit
     rev: v2.3.0
@@ -12,6 +10,13 @@ repos:
       - id: conventional-pre-commit
         stages: [commit-msg]
         args: [chore, ci, docs, feat, fix, hotfix, test]
+
+-   repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.4.0
+    hooks:
+    -   id: check-yaml
+    -   id: end-of-file-fixer
+    -   id: trailing-whitespace
 
 -   repo: https://github.com/doublify/pre-commit-rust
     rev: v1.0
