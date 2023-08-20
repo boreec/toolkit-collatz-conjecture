@@ -62,7 +62,10 @@ $ cargo run -- -s 27 -p && display sequence_from_27.png
 ![Collatz Sequence for n = 27](rsc/img/sequence_from_27.png)
 
 ## Bottom-up tree
-To build the sequence in a reverse order from 1 to given n, use `--tree` arg.
+To build the sequence in a reverse order from 1 to given n, use `--tree`  (or
+its alias `-t`). You can also use `--tree-fancy` (or its short alias
+`-T`) to create a colourful tree.
+
 This will create the bottom-up tree and export it in a file named
 `tree_to_n.dot`. This file can then be processed into an image with:
 ```terminal
@@ -70,7 +73,17 @@ $ cargo run -- -s 1000 --tree && \
   dot -Tpng tree_to_1000.dot > tree_to_1000.png
 ```
 
-<img src="rsc/img/tree_to_1000.png" height="300">
+<div style="text-align:center;">
+  <figure style="display:inline-block">
+      <img src="rsc/img/tree_to_1000.png" height="300">
+      <figcaption>--tree</figcaption>
+  </figure>
+
+  <figure style="display:inline-block">
+      <img src="rsc/img/colourful_tree_to_1000.png" height="300">
+      <figcaption>--tree-fancy</figcaption>
+  </figure>
+</div>
 
 ## Benchmarking
 Use `-b` or `--benchmark` with a number to compare the efficiency of diverse
