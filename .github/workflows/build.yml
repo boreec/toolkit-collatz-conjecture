@@ -14,6 +14,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v3
 
+      - name: pre-commit Linting
+        uses: pre-commit/action@v3.0.0
+
       - name: Setup Rust
         uses: actions-rs/toolchain@v1
         with:
